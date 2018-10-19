@@ -1,7 +1,7 @@
 version: '3'
 services:
     mysql:
-        image: 'mysql:5.7'
+        image: 'mariadb:latest'
         volumes:
             - './sql/init.sql:/docker-entrypoint-initdb.d/init.sql'
         environment:
@@ -18,34 +18,20 @@ services:
     php:
         image: 'okty/php:7.2'
         volumes:
-            # - './:/usr/share/nginx/html'
-            - './:/var/www/html'
+            - './:/usr/share/nginx/html'
         environment:
             - 'PHP_EXTENSIONS=pdo_mysql,intl,opcache'
-    # nginx:
-    #     image: 'okty/nginx:1.14'
-    #     ports:
-    #         - '8080:80'
-    #     volumes:
-    #         - './:/usr/share/nginx/html'
-    #     environment:
-    #         - MAX_UPLOAD_SIZE=2M
-    #         - PHP_CONTAINER_ID=php
-    #         - INDEX_SUBFOLDER=web
-    #     depends_on:
-    #         - php
-    #         - mysql
-    apache:
-        image: 'httpd:2.4.35'
+    nginx:
+        build:
+          context: ./
         ports:
             - '8080:80'
         volumes:
-            # - './:/usr/share/nginx/html'
-            - './:/var/www/html'
+            - './:/usr/share/nginx/html'
         environment:
             - MAX_UPLOAD_SIZE=2M
             - PHP_CONTAINER_ID=php
-            # - INDEX_SUBFOLDER=web
+            - INDEX_SUBFOLDER=web
         depends_on:
             - php
             - mysql

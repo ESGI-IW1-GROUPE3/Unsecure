@@ -11,6 +11,7 @@ class LoginController extends Controller
 {
     public function indexAction(Request $request)
     {
+	$example = true;
         $loginService = $this->get('unsecure.login');
         $sessionService = $this->get('unsecure.session');
         

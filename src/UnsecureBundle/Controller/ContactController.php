@@ -13,7 +13,7 @@ class ContactController extends Controller
     {
         $contactForm = $this->createForm(new ContactType());
         $contactForm->handleRequest($request);
-
+	$resultOfForm = "le formulaire est valide";
         if ($contactForm->isSubmitted())
         {
             if ($contactForm->isValid())

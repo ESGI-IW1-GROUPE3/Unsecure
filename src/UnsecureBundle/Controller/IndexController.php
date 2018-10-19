@@ -14,6 +14,7 @@ class IndexController extends Controller
 
     public function indexAction(Request $request)
     {
+	$a = "redha";
         $em = $this->getDoctrine()->getManager();
         $subjects = $em->getRepository('UnsecureBundle:Subject')->recentSubject(10);
     

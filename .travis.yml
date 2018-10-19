@@ -1,5 +1,8 @@
 language: php
 
+services:
+    - docker
+    
 php:
   - 5.5
   - 7.0
@@ -20,6 +23,7 @@ notifications:
       - saittirite@myges.fr
       
 before_install:
-  - composer require friendsofphp/php-cs-fixer
+  #- composer require friendsofphp/php-cs-fixer
 
-script: ./vendor/bin/php-cs-fixer fix . --dry-run
+script:
+    - docker run --rm -v $PWD:/app phpqa/php-cs-fixer fix . --dry-run

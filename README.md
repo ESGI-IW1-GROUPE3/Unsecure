@@ -23,7 +23,7 @@ Vous pouvez accéder à la base de données via l'interface adminer à l'adresse
 
 Pour l'accès à la base de donnée, vous pouvez depuis adminer utiliser les accès suivants:
 
-```
+```bash
 id: docker
 password: docker
 host: mysql

@@ -22,8 +22,5 @@ notifications:
     recipients:
       - saittirite@myges.fr
       
-before_install:
-  #- composer require friendsofphp/php-cs-fixer
-
 script:
-    - docker run --rm -v $PWD:/app phpqa/php-cs-fixer fix . --dry-run
+    - docker run --rm -v $PWD:/src phpqa/php-cs-fixer fix . --dry-run

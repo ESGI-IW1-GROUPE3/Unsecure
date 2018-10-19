@@ -18,19 +18,34 @@ services:
     php:
         image: 'okty/php:7.2'
         volumes:
-            - './:/usr/share/nginx/html'
+            # - './:/usr/share/nginx/html'
+            - './:/var/www/html'
         environment:
             - 'PHP_EXTENSIONS=pdo_mysql,intl,opcache'
-    nginx:
-        image: 'okty/nginx:1.14'
+    # nginx:
+    #     image: 'okty/nginx:1.14'
+    #     ports:
+    #         - '8080:80'
+    #     volumes:
+    #         - './:/usr/share/nginx/html'
+    #     environment:
+    #         - MAX_UPLOAD_SIZE=2M
+    #         - PHP_CONTAINER_ID=php
+    #         - INDEX_SUBFOLDER=web
+    #     depends_on:
+    #         - php
+    #         - mysql
+    apache:
+        image: 'httpd:2.4.35'
         ports:
             - '8080:80'
         volumes:
-            - './:/usr/share/nginx/html'
+            # - './:/usr/share/nginx/html'
+            - './:/var/www/html'
         environment:
             - MAX_UPLOAD_SIZE=2M
             - PHP_CONTAINER_ID=php
-            - INDEX_SUBFOLDER=public
+            # - INDEX_SUBFOLDER=web
         depends_on:
             - php
             - mysql
